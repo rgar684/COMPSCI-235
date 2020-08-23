@@ -1,10 +1,15 @@
-from flask import Flask
+from flask import Flask, request
 from markupsafe import escape
 
 
 def create_app():
 
     app = Flask(__name__)
+
+    @app.route('/greeting')
+    def greeting():
+        name = request.args["name"]
+        return "Kia Ora " + name
 
     @app.route('/')
     def index():
